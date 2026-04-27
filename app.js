@@ -890,6 +890,26 @@ function initHeroTheme() {
   video.addEventListener('loadeddata', activate, { once: true });
   // Si falla (ej: archivo no existe) revertimos
   video.addEventListener('error', deactivate, { once: true });
+
+  // Forzar reproducción en móviles reales (iOS/Android bloquean autoplay)
+  video.muted = true;
+  const tryPlay = () => {
+    const p = video.play();
+    if (p !== undefined) {
+      p.catch(() => {
+        // Si aún falla, intentar en el primer toque del usuario
+        document.addEventListener('touchstart', () => {
+          video.muted = true;
+          video.play().catch(() => {});
+        }, { once: true });
+      });
+    }
+  };
+  if (video.readyState >= 2) {
+    tryPlay();
+  } else {
+    video.addEventListener('canplay', tryPlay, { once: true });
+  }
 }
 
 /* ============================================================
