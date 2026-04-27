@@ -90,7 +90,7 @@ servicios: [
   {
     icono:          "leaf",
     titulo:         "Fumigación con Drones",
-    descripcion:    "Ofrecemos fumigación agrícola y urbana con tecnología ULV, cubriendo grandes extensiones de forma rápida, precisa y eficiente.",
+    descripcion:    "Ofrecemos fumigación agrícola, cubriendo grandes extensiones de forma rápida, precisa y eficiente.",
     caracteristicas:[
       "Tecnología ULV",
       "Cobertura de grandes áreas",

@@ -248,6 +248,11 @@
                 <input type="email" id="f-email" name="correo"
                   placeholder="tu@correo.com" required autocomplete="email" />
               </div>
+              <div class="form-group">
+                <label for="f-location">Dónde se ubica</label>
+                <input type="text" id="f-location" name="ubicacion"
+                  placeholder="Tu ubicación" required autocomplete="street-address" />
+              </div>
             </div>
 
             <div class="form-row">
@@ -263,12 +268,17 @@
                   <!-- JS populates options from GSE.servicios -->
                 </select>
               </div>
+              <div class="form-group">
+                <label for="f-location">Dónde se ubica</label>
+                <input type="text" id="f-location" name="ubicacion"
+                  placeholder="Tu ubicación" required autocomplete="street-address" />
+              </div>
             </div>
 
             <div class="form-group">
               <label for="f-msg">Cuéntanos tu proyecto</label>
               <textarea id="f-msg" name="mensaje" rows="4"
-                placeholder="Describe brevemente qué necesitas y dónde se ubica..." required></textarea>
+                placeholder="Describe brevemente qué necesitas y brevemente la altura y metros del edificio o terreno..." required></textarea>
             </div>
 
             <button type="submit" class="glass-btn btn-submit-form" id="submitBtn">
