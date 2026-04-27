@@ -1262,6 +1262,38 @@ footer {
   .contact-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .btn-submit-form { width: 100%; justify-content: center; }
+
+  /* Navbar en móvil: hamburger fijo en esquina derecha, logo sin tocar */
+  .nav-container {
+    padding: 0 16px;
+    position: relative;
+  }
+  .nav-logo {
+    margin-left: -45px; /* empuja el logo más a la izquierda */
+    max-width: calc(100% - 68px);
+    overflow: hidden;
+    gap: 4px; /* reduce espacio entre imagen y texto */
+  }
+  .logo-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.95rem;
+    margin-left: -30px; /* mueve solo el texto a la izquierda */
+  }
+  .hamburger {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+    padding: 12px;
+    min-width: 44px;
+    min-height: 44px;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+  }
 }
 
 @media (max-width: 600px) {
