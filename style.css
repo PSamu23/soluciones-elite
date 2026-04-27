@@ -150,7 +150,7 @@ ul { list-style: none; }
   .drone-fixed-wrap {
     right: 8px;
     top: 68px;
-    width: clamp(80px, 22vw, 120px);
+    width: clamp(100px, 38vw, 160px);
     opacity: 0.85;
     /* JS no toca el posicionamiento en móvil */
   }
