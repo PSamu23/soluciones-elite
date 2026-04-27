@@ -1017,7 +1017,7 @@ function initDroneFixedSpin(viewer, wrap) {
   wrap.style.left      = 'auto';
   wrap.style.top       = 'auto';
   wrap.style.right     = 'clamp(16px, 4vw, 60px)';
-  wrap.style.top       = '20%';
+  wrap.style.top       = '2%';
 
   (function animFixed() {
     requestAnimationFrame(animFixed);
