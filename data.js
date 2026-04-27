@@ -148,7 +148,7 @@ preguntas: [
   },
   {
     pregunta: "¿Cuánto tiempo tarda un proyecto típico?",
-    respuesta: "El tiempo estimado es de aproximadamente un mes y medio, dependiendo de la altura y la complejidad del proyecto. Cada servicio se planifica de forma personalizada.",
+    respuesta: "El tiempo estimado depende de varios factores, como la altura y la complejidad del proyecto. Cada servicio se planifica de forma personalizada, envianos un mensaje para darte una cotización con tiempos específicos.",
   },
   {
     pregunta: "¿Qué condiciones climáticas afectan las operaciones?",
