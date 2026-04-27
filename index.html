@@ -3,14 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Grupo Soluciones Élite — Nos elevamos juntos</title>
-  <meta name="description" content="Líderes en servicios de drones para agricultura, bienes raíces, inspección de infraestructura y topografía. Tecnología de punta para elevar tu negocio." />
+  <title>Grupo Soluciones Élite — Servicios de Drones en Honduras</title>
+  <meta name="description" content="Servicios profesionales de drones en Honduras: limpieza de fachadas, paneles solares, inspección y fumigación. Pilotos certificados ARPAS. Cotiza gratis." />
+  <meta name="keywords" content="drones Honduras, servicios drones San Pedro Sula, fumigación con drones, limpieza fachadas drones, inspección infraestructura drones, drones agricultura Honduras, Grupo Soluciones Élite" />
   <meta name="theme-color" content="#0D2F3F" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Grupo Soluciones Élite" />
+  <!-- canonical + og:url + og:image + JSON-LD los inyecta initSEO() desde data.js -->
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Grupo Soluciones Élite" />
-  <meta property="og:description" content="Soluciones aéreas de alta precisión. Nos elevamos juntos." />
+  <!-- Geo (posicionamiento local Honduras) -->
+  <meta name="geo.region" content="HN-CR" />
+  <meta name="geo.placename" content="San Pedro Sula, Honduras" />
+
+  <!-- Open Graph (Facebook / WhatsApp preview) -->
+  <meta property="og:title" content="Grupo Soluciones Élite — Servicios de Drones en Honduras" />
+  <meta property="og:description" content="Limpieza de fachadas, paneles solares, inspección y fumigación con drones. Pilotos certificados ARPAS. San Pedro Sula, Honduras." />
   <meta property="og:type" content="website" />
+  <!-- og:url y og:image los pone initSEO() desde GSE.siteUrl -->
+  <meta property="og:locale" content="es_HN" />
+  <meta property="og:site_name" content="Grupo Soluciones Élite" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Grupo Soluciones Élite — Servicios de Drones en Honduras" />
+  <meta name="twitter:description" content="Limpieza de fachadas, paneles solares, inspección y fumigación con drones. Pilotos certificados ARPAS." />
+  <!-- twitter:image lo pone initSEO() desde GSE.siteUrl -->
+
+  <!-- Schema.org JSON-LD (LocalBusiness + FAQPage) lo inyecta initSEO() desde data.js -->
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -248,11 +267,6 @@
                 <input type="email" id="f-email" name="correo"
                   placeholder="tu@correo.com" required autocomplete="email" />
               </div>
-              <div class="form-group">
-                <label for="f-location">Dónde se ubica</label>
-                <input type="text" id="f-location" name="ubicacion"
-                  placeholder="Tu ubicación" required autocomplete="street-address" />
-              </div>
             </div>
 
             <div class="form-row">
@@ -278,7 +292,7 @@
             <div class="form-group">
               <label for="f-msg">Cuéntanos tu proyecto</label>
               <textarea id="f-msg" name="mensaje" rows="4"
-                placeholder="Describe brevemente qué necesitas y la altura y metros del edificio o terreno..." required></textarea>
+                placeholder="Describe brevemente qué necesitas con la altura y metros del edificio o terreno..." required></textarea>
             </div>
 
             <button type="submit" class="glass-btn btn-submit-form" id="submitBtn">

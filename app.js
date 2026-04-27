@@ -35,7 +35,94 @@ const ICONS = {
 };
 
 /* ============================================================
-   1. CONTENT POPULATION  (from data.js → GSE)
+   1. SEO — canonical, og:url, og:image, JSON-LD (desde data.js)
+   ============================================================ */
+function initSEO() {
+  const url = (GSE.siteUrl || '').replace(/\/$/, '');
+  const e   = GSE.empresa;
+  const image = url + '/img/gse-favicon.png';
+
+  /* ── Canonical ────────────────────────────────────────── */
+  let canonical = document.querySelector('link[rel="canonical"]');
+  if (!canonical) {
+    canonical = document.createElement('link');
+    canonical.rel = 'canonical';
+    document.head.appendChild(canonical);
+  }
+  canonical.href = url + '/';
+
+  /* ── Helper: actualiza o crea una <meta> ──────────────── */
+  const setMeta = (selector, value) => {
+    let el = document.querySelector(selector);
+    if (!el) {
+      el = document.createElement('meta');
+      // selector tiene forma [property="og:url"] o [name="twitter:image"]
+      const m = selector.match(/\[([^=]+)="([^"]+)"\]/);
+      if (m) el.setAttribute(m[1], m[2]);
+      document.head.appendChild(el);
+    }
+    el.setAttribute('content', value);
+  };
+
+  setMeta('meta[property="og:url"]',    url + '/');
+  setMeta('meta[property="og:image"]',  image);
+  setMeta('meta[name="twitter:image"]', image);
+
+  /* ── JSON-LD LocalBusiness ────────────────────────────── */
+  const localBusiness = {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    name: e.nombre,
+    description: e.descripcion,
+    url: url + '/',
+    logo: url + '/img/gse-logo.png',
+    image: image,
+    telephone: e.whatsapp,
+    email: e.email,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'San Pedro Sula',
+      addressRegion: 'Cortés',
+      addressCountry: 'HN',
+    },
+    areaServed: { '@type': 'Country', name: 'Honduras' },
+    sameAs: [
+      'https://www.instagram.com/' + e.instagram,
+      'https://www.facebook.com/' + e.facebook,
+    ],
+    openingHours: 'Mo-Fr 08:00-17:00',
+    priceRange: '$$',
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Servicios con Drones',
+      itemListElement: GSE.servicios.map(s => ({
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: s.titulo },
+      })),
+    },
+  };
+
+  /* ── JSON-LD FAQPage (las preguntas de data.js sirven para Google) ── */
+  const faqPage = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: GSE.preguntas.map(q => ({
+      '@type': 'Question',
+      name: q.pregunta,
+      acceptedAnswer: { '@type': 'Answer', text: q.respuesta },
+    })),
+  };
+
+  [localBusiness, faqPage].forEach(schema => {
+    const s = document.createElement('script');
+    s.type = 'application/ld+json';
+    s.textContent = JSON.stringify(schema);
+    document.head.appendChild(s);
+  });
+}
+
+/* ============================================================
+   2. CONTENT POPULATION  (from data.js → GSE)
    ============================================================ */
 function populateContent() {
   const d = GSE;
@@ -950,6 +1037,9 @@ function initDroneFixedSpin(viewer, wrap) {
    INIT — DOMContentLoaded
    ============================================================ */
 document.addEventListener('DOMContentLoaded', () => {
+  // 0. SEO — canonical, og:url, og:image, JSON-LD desde data.js
+  initSEO();
+
   // 1. Populate all content from data.js
   populateContent();
 

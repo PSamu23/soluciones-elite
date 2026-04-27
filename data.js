@@ -7,6 +7,14 @@
  */
 
 const GSE = {
+
+    /* ── DOMINIO DEL SITIO ───────────────────────────────────── */
+  // ← EDITAR AQUÍ cuando tengas tu dominio definitivo.
+  //   Ahora en Netlify será algo como: "https://grupoelit.netlify.app"
+  //   Cuando compres dominio propio: "https://www.gruposoluciones.hn"
+  //   (sin barra al final)
+  siteUrl: "https://www.solucioneselite.com",
+
   /* ── MODELO 3D DEL DRON ──────────────────────────────────── */
   // Cambia el nombre del archivo .glb que quieras mostrar:
   //   Sin color (gris/metal): "dji_mavic_air_drone.glb"
