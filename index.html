@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grupo Soluciones Élite — Nos elevamos juntos</title>
+  <meta name="description" content="Líderes en servicios de drones para agricultura, bienes raíces, inspección de infraestructura y topografía. Tecnología de punta para elevar tu negocio." />
+  <meta name="theme-color" content="#0D2F3F" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Grupo Soluciones Élite" />
+  <meta property="og:description" content="Soluciones aéreas de alta precisión. Nos elevamos juntos." />
+  <meta property="og:type" content="website" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;1,14..32,400&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Favicon: miniatura en la pestaña del navegador -->
+  <link rel="icon" type="image/png" sizes="32x32" href="img/gse-favicon.png" />
+  <link rel="apple-touch-icon" href="img/gse-favicon.png" />
+
+  <!-- model-viewer: componente 3D de Google para .glb -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+</head>
+<body>
+
+  <!-- ── 3D Drone Canvas (pointer-events: none) ─────────── -->
+  <canvas id="droneCanvas" aria-hidden="true"></canvas>
+
+  <!-- ── Cursor glow ────────────────────────────────────── -->
+  <div id="cursorGlow" aria-hidden="true"></div>
+
+  <!-- ══════════════════════════════════════════════════════
+       NAVIGATION
+  ══════════════════════════════════════════════════════ -->
+  <nav id="navbar" role="navigation" aria-label="Navegación principal">
+    <div class="nav-container">
+
+      <a href="#" class="nav-logo" aria-label="Inicio">
+        <div class="logo-mark">
+          <img src="img/gse-logo.png" alt="Grupo Soluciones Élite" class="logo-img" />
+        </div>
+        <span class="logo-text" id="nav-brand"></span>
+      </a>
+
+      <ul class="nav-links" role="list">
+        <li><a href="#servicios"     class="nav-link">Servicios</a></li>
+        <li><a href="#nosotros"      class="nav-link">Nosotros</a></li>
+        <li><a href="#mision-vision" class="nav-link">Misión &amp; Visión</a></li>
+        <li><a href="#faq"           class="nav-link">FAQ</a></li>
+        <li><a href="#contacto"      class="nav-link">Contacto</a></li>
+      </ul>
+
+      <a id="nav-wa-btn" href="#" class="glass-btn btn-wa-nav" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        <span>WhatsApp</span>
+      </a>
+
+      <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Menú móvil" hidden>
+    <ul role="list">
+      <li><a href="#servicios"     class="mob-link">Servicios</a></li>
+      <li><a href="#nosotros"      class="mob-link">Nosotros</a></li>
+      <li><a href="#mision-vision" class="mob-link">Misión &amp; Visión</a></li>
+      <li><a href="#faq"           class="mob-link">FAQ</a></li>
+      <li><a href="#contacto"      class="mob-link">Contacto</a></li>
+    </ul>
+    <a id="mob-wa-btn" href="#" class="glass-btn btn-wa-mob" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      Contáctanos por WhatsApp
+    </a>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════════════════ -->
+  <section id="hero" aria-label="Presentación">
+
+    <!-- ── Video background ──────────────────────────────── -->
+    <video autoplay muted loop playsinline class="hero-bg-video" aria-hidden="true">
+      <source src="video.mp4" type="video/mp4" />
+    </video>
+    <div class="hero-bg-video-overlay" aria-hidden="true"></div>
+
+    <!-- ── Orbs (encima del overlay para profundidad) ────── -->
+    <div class="hero-bg-orbs" aria-hidden="true">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge reveal-up" id="hero-badge"></div>
+
+      <h1 class="hero-title reveal-up" id="hero-title">
+        <!-- Filled by JS -->
+      </h1>
+
+      <p class="hero-sub reveal-up" id="hero-sub"></p>
+
+      <div class="hero-btns reveal-up">
+        <a id="hero-wa-btn" href="#" class="glass-btn btn-wa-hero" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          <span id="hero-btn-primary"></span>
+        </a>
+        <a href="#servicios" class="glass-btn btn-secondary">
+          <span id="hero-btn-secondary"></span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator reveal-up" aria-hidden="true">
+      <div class="scroll-dot"></div>
+      <span>Descubrir</span>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       SERVICES
+  ══════════════════════════════════════════════════════ -->
+  <section id="servicios" aria-label="Servicios">
+    <div class="container">
+      <header class="section-header reveal-up">
+        <span class="section-label">Lo que hacemos</span>
+        <h2>Nuestros <span class="highlight">Servicios</span></h2>
+        <p>Soluciones aéreas profesionales adaptadas a cada industria y necesidad</p>
+      </header>
+
+      <div class="services-grid" id="servicesGrid" role="list"></div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       WHY US
+  ══════════════════════════════════════════════════════ -->
+  <section id="nosotros" aria-label="Por qué elegirnos">
+    <div class="container">
+      <header class="section-header reveal-up">
+        <span class="section-label">Nuestra diferencia</span>
+        <h2>¿Por Qué <span class="highlight">Elegirnos</span>?</h2>
+        <p>Más que drones — entregamos resultados que transforman tu negocio</p>
+      </header>
+
+      <div class="why-grid" id="whyGrid" role="list"></div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       MISSION & VISION
+  ══════════════════════════════════════════════════════ -->
+  <section id="mision-vision" aria-label="Misión y Visión">
+    <div class="container">
+      <header class="section-header reveal-up">
+        <span class="section-label">Nuestra esencia</span>
+        <h2>Misión & <span class="highlight">Visión</span></h2>
+        <p>Los valores que guían cada vuelo y cada proyecto que emprendemos</p>
+      </header>
+      <div class="mv-grid" id="mvGrid"></div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       FAQ
+  ══════════════════════════════════════════════════════ -->
+  <section id="faq" aria-label="Preguntas frecuentes">
+    <div class="container">
+      <header class="section-header reveal-up">
+        <span class="section-label">Resolvemos tus dudas</span>
+        <h2>Preguntas <span class="highlight">Frecuentes</span></h2>
+        <p>Todo lo que necesitas saber antes de comenzar tu proyecto</p>
+      </header>
+
+      <div class="faq-wrapper">
+        <div class="faq-container" id="faqContainer" role="list"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       CONTACT / FORM
+  ══════════════════════════════════════════════════════ -->
+  <section id="contacto" aria-label="Contacto">
+    <div class="contact-bg" aria-hidden="true">
+      <div class="contact-orb"></div>
+    </div>
+    <div class="container contact-inner">
+      <div class="contact-grid">
+
+        <!-- ── Info ── -->
+        <div class="contact-info reveal-up">
+          <span class="section-label" style="color:rgba(255,255,255,0.6)">Escríbenos</span>
+          <h2 id="contact-title"></h2>
+          <p id="contact-sub"></p>
+
+          <div class="contact-detail-list" id="contactDetails"></div>
+
+          <a id="contact-wa-btn" href="#" class="glass-btn btn-wa-cta" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            <span id="contact-btn-text"></span>
+          </a>
+        </div>
+
+        <!-- ── Form ── -->
+        <div class="contact-form-wrapper reveal-up">
+
+          <form
+            name="contacto"
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            class="contact-form"
+            id="contactForm"
+          >
+            <input type="hidden" name="form-name" value="contacto" />
+            <p hidden><label>No llenar: <input name="bot-field" /></label></p>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="f-name">Nombre completo</label>
+                <input type="text" id="f-name" name="nombre"
+                  placeholder="Tu nombre completo" required autocomplete="name" />
+              </div>
+              <div class="form-group">
+                <label for="f-email">Correo electrónico</label>
+                <input type="email" id="f-email" name="correo"
+                  placeholder="tu@correo.com" required autocomplete="email" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="f-phone">Teléfono (opcional)</label>
+                <input type="tel" id="f-phone" name="telefono"
+                  placeholder="+504 0000-0000" autocomplete="tel" />
+              </div>
+              <div class="form-group">
+                <label for="f-service">Servicio de interés</label>
+                <select id="f-service" name="servicio" required>
+                  <option value="">Selecciona un servicio</option>
+                  <!-- JS populates options from GSE.servicios -->
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="f-msg">Cuéntanos tu proyecto</label>
+              <textarea id="f-msg" name="mensaje" rows="4"
+                placeholder="Describe brevemente qué necesitas y dónde se ubica..." required></textarea>
+            </div>
+
+            <button type="submit" class="glass-btn btn-submit-form" id="submitBtn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true">
+                <line x1="22" y1="2" x2="11" y2="13"/>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+              </svg>
+              <span id="submit-label">Enviar mensaje</span>
+            </button>
+          </form>
+
+          <!-- Success state -->
+          <div class="form-success" id="formSuccess" hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round" width="56" height="56" aria-hidden="true">
+              <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+            <h3>Mensaje enviado</h3>
+            <p>Nos pondremos en contacto en menos de 2 horas.</p>
+          </div>
+
+        </div><!-- /form-wrapper -->
+      </div><!-- /contact-grid -->
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════════ -->
+  <footer id="footer" role="contentinfo">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <div class="logo-mark small">
+          <img src="img/gse-logo.png" alt="Grupo Soluciones Élite" class="logo-img" />
+        </div>
+        <div>
+          <p class="footer-name" id="footer-name"></p>
+          <p class="footer-slogan" id="footer-slogan"></p>
+        </div>
+      </div>
+
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="#servicios">Servicios</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+
+      <p class="footer-copy" id="footer-copy"></p>
+    </div>
+  </footer>
+
+  <!-- ── Floating WhatsApp Button ───────────────────────── -->
+  <a id="floating-wa" href="#" class="floating-wa glass-btn" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+    <div class="wa-pulse" aria-hidden="true"></div>
+    <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <!-- Drone 3D flotante fijo — sigue el mouse en toda la página -->
+  <div class="drone-fixed-wrap" id="heroDroneFloat" aria-hidden="true">
+    <model-viewer
+      id="droneModel"
+      src="dji_mavic_air_drone.glb"
+      alt="DJI Mavic Air Drone 3D"
+      camera-controls
+      disable-zoom
+      disable-pan
+      interaction-prompt="none"
+      shadow-intensity="2"
+      exposure="1.0"
+      tone-mapping="aces"
+      environment-image="legacy"
+      camera-orbit="0deg 75deg 105%"
+      interpolation-decay="80"
+      style="background: transparent;"
+      class="drone-model-viewer">
+    </model-viewer>
+  </div>
+
+  <!-- ── Scripts ─────────────────────────────────────────── -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
