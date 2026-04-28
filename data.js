@@ -113,7 +113,7 @@ servicios: [
     {
       icono:       "award",
       titulo:      "Pilotos Certificados",
-      descripcion: "Nuestro equipo cuenta con certificaciones oficiales de aviación civil.",
+      descripcion: "Nuestro equipo cuenta con certificaciones oficiales de la agencia Hondureña de Aeronáutica Civil.",
     },
     {
       icono:       "rocket",
