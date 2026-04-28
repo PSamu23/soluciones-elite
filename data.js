@@ -35,8 +35,8 @@ const GSE = {
     email:             "ventas@solucioneselite.com",  // ← EDITAR
     telefono:          "+504 8977-5763",             // ← EDITAR
     ubicacion:         "Honduras, San Pedro Sula", // ← EDITAR
-    instagram:         "gruposoluciones",            // ← EDITAR (sin @)
-    facebook:          "GrupoSolucionesElite",       // ← EDITAR
+    instagram:         "https://www.instagram.com/gruposolucioneselite/",  // ← URL completa
+    facebook:          "https://www.facebook.com/profile.php?id=61582240800999", // ← URL completa
     logoUrl:           "",  // ← EDITAR: ruta a logo PNG/SVG (dejar vacío para usar texto)
   },
 
