@@ -41,6 +41,7 @@ const GSE = {
     logoUrl:           "",  // ← EDITAR: ruta a logo PNG/SVG (dejar vacío para usar texto)
   },
 
+  
   /* ── COLORES (deben coincidir con style.css) ─────────── */
   colores: {
     principal:  "#0D2F3F",
