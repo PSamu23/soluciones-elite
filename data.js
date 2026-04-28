@@ -37,6 +37,7 @@ const GSE = {
     ubicacion:         "Honduras, San Pedro Sula", // ← EDITAR
     instagram:         "https://www.instagram.com/gruposolucioneselite/",  // ← URL completa
     facebook:          "https://www.facebook.com/profile.php?id=61582240800999", // ← URL completa
+    tiktok:            "https://www.tiktok.com/@gruposolucioneselite?_r=1&_t=ZP-95v6MVxVZsd",  // ← EDITAR: URL completa de TikTok (ej: "https://www.tiktok.com/@gruposolucioneselite")
     logoUrl:           "",  // ← EDITAR: ruta a logo PNG/SVG (dejar vacío para usar texto)
   },
 
