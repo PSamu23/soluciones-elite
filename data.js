@@ -96,7 +96,7 @@ servicios: [
     ],
   },
   {
-    icono:          "leaf",
+    icono:          "drone",
     titulo:         "Fumigación con Drones",
     descripcion:    "Ofrecemos fumigación agrícola, cubriendo grandes extensiones de forma rápida, precisa y eficiente.",
     caracteristicas:[
