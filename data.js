@@ -132,7 +132,7 @@ servicios: [
     mision: {
       icono:  "target",
       titulo: "Nuestra Misión",
-      texto:  "Impulsar el crecimiento de nuestros clientes en Honduras mediante soluciones aéreas innovadoras, seguras y de alta precisión.",
+      texto:  "Impulsar el crecimiento de nuestros clientes  mediante soluciones aéreas innovadoras, seguras y de alta precisión.",
     },
     vision: {
       icono:  "eye",
@@ -149,7 +149,7 @@ preguntas: [
   },
   {
     pregunta: "¿Gestionan los permisos de vuelo?",
-    respuesta: "Sí, contamos con todos los permisos como operadores ARPAS en Honduras. Nuestros pilotos están certificados oficialmente y cumplimos con la normativa vigente.",
+    respuesta: "Sí, contamos con todos los permisos como operadores RPAS en Honduras. Nuestros pilotos están certificados oficialmente y cumplimos con la normativa vigente.",
   },
   {
     pregunta: "¿En qué zonas geográficas operan?",
@@ -173,7 +173,7 @@ preguntas: [
   },
   {
     pregunta: "¿Los pilotos están certificados?",
-    respuesta: "Sí, contamos con pilotos certificados oficialmente por ARPAS, garantizando operaciones seguras y profesionales.",
+    respuesta: "Sí, contamos con pilotos certificados oficialmente por RPAS, garantizando operaciones seguras y profesionales.",
   },
 ],
 
